@@ -6,7 +6,7 @@ import Link from "next/link";
 import { SuccessContainer, ImageContainer } from "../styles/pages/successpage";
 import Product from "./product/[id]";
 import {  } from "@phosphor-icons/react";
-import { ArrowCircleLeft } from "@phosphor-icons/react/dist/ssr";
+// import { ArrowCircleLeft } from "@phosphor-icons/react/dist/ssr";
 import Head from "next/head";
 
 interface SuccessShopProps {
@@ -35,7 +35,7 @@ export default function Successshop({customerName, product}: SuccessShopProps) {
                 Uhuul <strong>{customerName}</strong>, sua <strong>{product.name}</strong> já está a caminho da sua casa.
             </p>
             <Link href="/">
-            <ArrowCircleLeft size={32} href="/"/>
+            {/* <ArrowCircleLeft size={32} href="/"/> */}
                       Voltar para a página inicial
                 
             </Link>
