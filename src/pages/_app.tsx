@@ -1,9 +1,8 @@
 import { AppProps } from "next/app"
 import { globalStyle } from "../styles/global"
-import { Storefront } from "@phosphor-icons/react";
+
 import { Container, Header } from "../styles/pages/app";
 import Image from "next/image"
-import Tshirt from "../assets/tshirt.png"
 import LogoImg from "../assets/Logo.png"
 import Link from "next/link";
 
