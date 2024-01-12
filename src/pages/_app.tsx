@@ -9,6 +9,7 @@ import Link from "next/link";
 
 
 
+
 globalStyle();
 
 export default function App({ Component, pageProps }: AppProps) {

@@ -5,8 +5,6 @@ import { stripe } from "../lib/stripe"
 import Link from "next/link";
 import { SuccessContainer, ImageContainer } from "../styles/pages/successpage";
 import Product from "./product/[id]";
-import {  } from "@phosphor-icons/react";
-// import { ArrowCircleLeft } from "@phosphor-icons/react/dist/ssr";
 import Head from "next/head";
 
 interface SuccessShopProps {
