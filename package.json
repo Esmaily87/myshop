@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    
     "@stitches/react": "^1.2.8",
     "axios": "^1.6.5",
     "keen-slider": "^6.8.6",

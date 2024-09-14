@@ -6,11 +6,8 @@ import Stripe from "stripe"
 import Image from "next/image"
 // import { useRouter } from "next/router"
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import Head from "next/head"
-import { json } from "stream/consumers"
-
-
 
 interface ProductProps {
     product: {
@@ -21,36 +18,43 @@ interface ProductProps {
       description: string;
       defaultPriceId: string;
   }
-  
 }
-
 
 export default function Product({product}: ProductProps) {
   const[isCreatingCheckoutSession, setisCreatingCheckoutSession] = useState(false)
 
-  const [List, setList] = useState([])
-
-  useEffect(() => {
-    setList([1,2,3])
-    
-
-  },[product])
-
-
-
-    
-    
   
+  // const router = useRouter()
 
   async function handleBuyButton() {
     try{
       setisCreatingCheckoutSession(true);
       const response = await axios.post('/api/checkout',{
         priceId: product.defaultPriceId,
+      })
+      
+      const{ checkoutUrl } = response.data;
+
+      // router.push('/checkout')
+
+      window.location.href = checkoutUrl
+
+    } catch(err){
+      setisCreatingCheckoutSession(false);
+      alert('falha ao redirecionar ao checkout!')
+    } finally{}
+  }
+
+  async function addToCart() {
+    try{
+      setisCreatingCheckoutSession(true);
+      const response = await axios.post('/api/checkout/session',{
+        sessioId: sessionStorage.setItem
 
       })
       
       const{ checkoutUrl } = response.data;
+      console.log(checkoutUrl.data)
 
       
 
@@ -60,47 +64,27 @@ export default function Product({product}: ProductProps) {
 
     } catch(err){
       setisCreatingCheckoutSession(false);
-      alert('falha ao redirecionar ao checkout')
+      alert('falha ao incluir no carrinho!')
     } finally{}
   }
 
-  async function handleAddCart() {
-    try{
-      setisCreatingCheckoutSession(true);
-      const response = await axios.get('/api/cart',{
-        params: {
-        priceId: product.defaultPriceId,
-        }
-
-      })
-      
-      const{ cart } = response.data;
-
-      
-
-      // router.push('/checkout')
-
-      window.location.href = cart
-
-    } catch(err){
-      setisCreatingCheckoutSession(false);
-      alert('falha ao redirecionar ao checkout')
-    } finally{}
-  }
-
-
+  // const {isFallback} = useRouter()
+  // if(isFallback){
+  //   return <p>Loading...</p>
+  // }
+  // console.log(product)
 
   
- 
+
 
         return (
           <>
           <Head>
-            <title>`{product.name}{" por "}{product.price}`</title>
+            <title>{`${product.name} por ${product.price}`}</title>
           </Head>
           <ProductContainer >
               <ImageContainer  >
-                <Image src={product.imageUrl} width={520} height={480} alt="" />
+                <Image src={product.imageUrl} width={520} height={480} alt="" priority={true} />
 
               </ImageContainer>
               <ProductDetails >
@@ -108,9 +92,7 @@ export default function Product({product}: ProductProps) {
                 <span>{product.price}</span>
                 <p>{product.description}</p>
                 <button disabled={isCreatingCheckoutSession} onClick={handleBuyButton}>Comprar agora</button>
-                <button disabled={isCreatingCheckoutSession} onClick={handleAddCart}>Adicionar ao Carrinho</button>
-                <p>{List}</p>
-                
+                <button disabled={isCreatingCheckoutSession} onClick={addToCart}>Adicionar ao carrinho</button>
               </ProductDetails>
           </ProductContainer>
           </>
@@ -130,38 +112,34 @@ export default function Product({product}: ProductProps) {
     }
   }
 
-  
-
-  
-  
   export const getStaticProps: GetStaticProps <any, { id: string}> = async ({params}) => {
-    // export const getServerSideProps: GetServerSideProps <any, { id: string}> = async ({params}) => {
-      const productId = params.id;
-  
-      const product = await stripe.products.retrieve(productId,{
-        expand: ['default_price']
-      });
-  
-      const price = product.default_price as Stripe.Price
-  
-      return {
-        props: {
-          product: {
-          id: product.id,
-          name: product.name,
-          imageUrl: product.images[0],
-  
-          price: new Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL'
-          }).format(price.unit_amount / 100),
-          description: product.description,
-          defaultPriceId: price.id
-        }
-  
-      },
-        revalidate: 60 * 60 * 1 //1 hour on cache
+  // export const getServerSideProps: GetServerSideProps <any, { id: string}> = async ({params}) => {
+    const productId = params.id;
+
+    const product = await stripe.products.retrieve(productId,{
+      expand: ['default_price']
+    });
+
+    const price = product.default_price as Stripe.Price
+
+    return {
+      props: {
+        product: {
+        id: product.id,
+        name: product.name,
+        imageUrl: product.images[0],
+
+        price: new Intl.NumberFormat('pt-BR', {
+          style: 'currency',
+          currency: 'BRL'
+        }).format(price.unit_amount / 100),
+        description: product.description,
+        defaultPriceId: price.id
       }
-  
+
+    },
+      revalidate: 60 * 60 * 1 //1 hour on cache
     }
-    
+
+  }
+  

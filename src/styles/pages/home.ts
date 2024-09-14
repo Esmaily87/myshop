@@ -2,13 +2,29 @@ import {styled} from "../"
 // import Link from "next/link";
 
 export const HomeContainer = styled('main', {
-    display: 'flex',
+    // display: 'flex'
+    // flexDirection: 'column',
     // gap: "3rem",
-    width: "100%",
+    
     // backgroundColor: "red",
-    maxWidth: "calc(100vw - ((100vw - 1080px)/2))",
-    marginLeft: "auto",
-    minHeight: 656,
+    // maxWidth: "calc(100vw - ((100vw - 1080px)/2))",
+    // marginLeft: "auto",
+    // minHeight: 656,
+
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    alignItems: 'center',
+    alignSelf:'center',
+
+    // display: 'flex',
+    flexwrap: 'wrap',
+    flexDirection: 'row',
+    gap: '1rem',
+    justifyContent: 'center',
+    padding: '10px',
+
+    
+
 
 
 })
@@ -20,6 +36,7 @@ export const Product = styled('div', {
     cursor: "pointer",
     position: "relative",
     overflow: "hidden",
+    // width: '300px',
 
     display: "flex",
     alignItems: "center",

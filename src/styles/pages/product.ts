@@ -8,13 +8,13 @@ export const ProductContainer = styled('main',{
 
     maxWidth: 1180,
     margin: '0 auto',
-    // border: '1px solid red'
+    
 
 })
 
 export const ImageContainer = styled('div',{
     width: '100%',
-    maxWidth: 576,
+    maxWidth: 'auto',
     height: 'calc(656px - 0.5rem)',
     background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
     borderRadius: 8,

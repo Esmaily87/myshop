@@ -24,10 +24,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             price: priceId,
             quantity: 1,
         }],
-    })
+        
+    }
+    
+)
 
     return res.status(201).json({
-        checkoutUrl: checkoutSession.url,
+        
+        checkoutUrl: checkoutSession.url
     });
+
+    
     
 }
