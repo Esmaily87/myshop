@@ -1,34 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 👕 T-Shirts Shop with Stripe
 
-## Getting Started
+A simple web e-commerce application for selling t-shirts, integrated with Stripe for secure online payments. This project was created to learn payment API integration, product routing, and the basic structure of an online store.
 
-First, run the development server:
+## 🚀 Technologies Used
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+- **Node.js** – Backend platform  
+- **Express.js** – Framework for creating routes and HTTP server  
+- **Stripe API** – Payment gateway integration for checkout  
+- **HTML5 + CSS3** – Frontend structure  
+- **JavaScript** – Application logic  
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 💳 Features
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- Display of available t-shirts for purchase  
+- Basic shopping cart with pricing and quantity  
+- Stripe Checkout integration for secure payment processing  
+- Redirect to success page after purchase  
+- Modular project structure for easy expansion  
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## 📦 Project Structure
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- `/public` – Static files (HTML, CSS, images)  
+- `/server.js` – Node.js server with checkout routes  
+- `.env` – Environment variables (e.g., Stripe API key)  
 
-## Learn More
+## 🛠️ How to Run
 
-To learn more about Next.js, take a look at the following resources:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Esmaily87/T-Shirts-Shop-with-Stripe.git
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Install dependencies:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+   ```bash
+   npm install
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. Add your Stripe API key to the .env file:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+    ```bash
+    STRIPE_SECRET_KEY=your-secret-key-here
+
+4. Start the server:
+
+    ```bash
+    node server.js
+
+5. Open your browser and go to:
+
+      ```bash
+      http://localhost:3000
+🎯 Purpose
+
+This project aims to explore e-commerce concepts and implement a real payment solution with the Stripe API, simulating a complete purchase flow. Perfect for learning or as a foundation for more advanced projects.
+
